@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    style.
+      * { font-family: 'Arial', sans-serif; }
+      .code-box { display: flex; justify-content: center; margin-top: 20px; }
+      .code-digit {
+        font-size: 24px;
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        margin: 0 5px;
+        border-radius: 6px;
+        font-weight: bold;
+      }
+  body
+    .container(style="max-width: 600px; margin: 0 auto; text-align: center;")
+      h2 Hello #{name}
+      p To verify your email, please enter this code:
+      .code-box(style="display: flex; align-items: center;justify-content: center;")
+        each digit in codeDigits
+          .code-digit= digit
+      p This code will expire in 10 minutes.
+      p(style="margin-top: 50px; font-size: 0.8em; color: #aaa;")
+        Fortuner #{year} © All rights reserved.

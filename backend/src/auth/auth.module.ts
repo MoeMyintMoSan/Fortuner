@@ -6,12 +6,14 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AppconfigModule } from 'src/appconfig/appconfig.module';
 import { AppconfigService } from 'src/appconfig/appconfig.service';
+import { EmailModule } from 'src/email/email.module';
 
 @Module({
   imports: [
     AppconfigModule,
     UserModule,
     PassportModule,
+    EmailModule,
     JwtModule.registerAsync({
       imports: [AppconfigModule],
       useFactory: async (configService: AppconfigService) => ({

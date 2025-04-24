@@ -4,6 +4,7 @@ import { AppconfigModule } from 'src/appconfig/appconfig.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { AppconfigService } from 'src/appconfig/appconfig.service';
+import * as path from 'path';
 
 @Module({
   providers: [EmailService],
@@ -22,8 +23,11 @@ import { AppconfigService } from 'src/appconfig/appconfig.service';
             pass: configService.getEmailPass(),
           },
         },
+        defaults: {
+          from: '"nest-modules" <modules@nestjs.com>',
+        },
         template: {
-          dir: __dirname + '/templates',
+          dir: path.join(process.cwd(), 'src', 'templates'),
           adapter: new PugAdapter({ inlineCssEnabled: true }),
           options: {
             strict: true,
