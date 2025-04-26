@@ -18,7 +18,6 @@ import { MailerModule } from '@nestjs-modules/mailer';
     AuthModule,
     UserModule,
     DatabaseModule,
-    AppconfigModule,
     CacheModule.register({
       isGlobal: true,
     }),
