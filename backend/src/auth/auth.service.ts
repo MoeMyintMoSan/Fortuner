@@ -44,4 +44,21 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
+  async TokenVerification(token: string) {
+    const user = await this.userService.findOne(token);
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const isPasswordValid = await bcrypt.compare(token, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const payload = { email: user.email, sub: user._id };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
 }

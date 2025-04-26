@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { EmailService } from './email.service';
 import { AppconfigModule } from 'src/appconfig/appconfig.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { TokenModule } from 'src/token/token.module';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { AppconfigService } from 'src/appconfig/appconfig.service';
 import * as path from 'path';
@@ -11,7 +12,7 @@ import * as path from 'path';
   imports: [
     AppconfigModule,
     MailerModule.forRootAsync({
-      imports: [AppconfigModule],
+      imports: [AppconfigModule, TokenModule],
       inject: [AppconfigService],
       useFactory: async (configService: AppconfigService) => ({
         transport: {
