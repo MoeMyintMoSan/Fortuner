@@ -5,8 +5,8 @@ export type TokenDocument = HydratedDocument<Token>;
 
 @Schema({ timestamps: true })
 export class Token {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  user: Types.ObjectId;
+  @Prop({ type: String, ref: 'User', required: true })
+  userEmail: string;
 
   @Prop({ type: String, required: true })
   token: string;

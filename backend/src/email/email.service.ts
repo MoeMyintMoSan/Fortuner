@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { MailerService as MailerMain } from '@nestjs-modules/mailer';
+import { TokenService } from 'src/token/token.service';
 import * as path from 'path';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { IsEmail, isString } from 'class-validator';
+import { Token } from 'src/schema/token.schema';
 
 class emailDto {
   @IsEmail()
@@ -10,9 +14,12 @@ class emailDto {
 
 @Injectable()
 export class EmailService {
-  constructor(private readonly mailerMain: MailerMain) {}
+  constructor(private readonly mailerMain: MailerMain, 
+    private readonly tokenService: TokenService,
+  ) {}
 
   async sendMail(email: string): Promise<void> {
+    const randomizedToken = await this.tokenService.createdToeken( 'EMAIL_VERIFICATION' , email );
     await this.mailerMain
       .sendMail({
         to: email,
@@ -22,7 +29,7 @@ export class EmailService {
         template: path.join(process.cwd(), 'src', 'templates', 'template'),
         context: {
           name: 'Noel',
-          codeDigits: ['1', '2', '3', '4'],
+          codeDigits: randomizedToken,
           year: new Date().getFullYear(),
         },
       })
@@ -33,4 +40,6 @@ export class EmailService {
         console.error('Error sending email:', error);
       });
   }
+
+
 }

@@ -9,6 +9,8 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { AppconfigService } from './appconfig/appconfig.service';
 import { EmailModule } from './email/email.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { TokenService } from './token/token.service';
+import { TokenModule } from './token/token.module';
 
 // to be configed with redis later
 
@@ -22,8 +24,9 @@ import { MailerModule } from '@nestjs-modules/mailer';
       isGlobal: true,
     }),
     EmailModule,
+    TokenModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, TokenService],
 })
 export class AppModule {}
