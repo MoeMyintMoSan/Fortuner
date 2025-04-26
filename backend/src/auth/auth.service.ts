@@ -16,7 +16,9 @@ export class AuthService {
 
   async register(createUserDto: CreateUserDto) {
     const passwordHashed = await bcrypt.hash(createUserDto.password, 10);
-    this.emailService.sendMail();
+
+    // console.log('type of createUserDto.email', typeof createUserDto.email);
+    this.emailService.sendMail(createUserDto.email as string);
     return this.userService.create({
       ...createUserDto,
       password: passwordHashed,
