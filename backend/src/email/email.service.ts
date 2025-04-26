@@ -7,6 +7,7 @@ export class EmailService {
   constructor(private readonly mailerMain: MailerMain) {}
 
   async sendMail(): Promise<void> {
+    const randomizedToken = Array.from({ length: 4 }, () => Math.floor(Math.random() * 10));
     await this.mailerMain
       .sendMail({
         to: 'noelpaingoaksoe@gmail.com',
@@ -16,7 +17,7 @@ export class EmailService {
         template: path.join(process.cwd(), 'src', 'templates', 'template'),
         context: {
           name: 'Noel',
-          codeDigits: ['1', '2', '3', '4'],
+          codeDigits: randomizedToken,
           year: new Date().getFullYear(),
         },
       })

@@ -1,9 +1,20 @@
-# compiled output
+# ───────────────────────────────────────────────
+# Compiled Output
+# ───────────────────────────────────────────────
 /dist
-/node_modules
 /build
+/node_modules
 
+# ───────────────────────────────────────────────
+# Dependency Lock Files
+# ───────────────────────────────────────────────
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# ───────────────────────────────────────────────
 # Logs
+# ───────────────────────────────────────────────
 logs
 *.log
 npm-debug.log*
@@ -12,14 +23,20 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# OS
+# ───────────────────────────────────────────────
+# OS-specific Files
+# ───────────────────────────────────────────────
 .DS_Store
 
-# Tests
+# ───────────────────────────────────────────────
+# Testing
+# ───────────────────────────────────────────────
 /coverage
 /.nyc_output
 
-# IDEs and editors
+# ───────────────────────────────────────────────
+# IDEs and Editors
+# ───────────────────────────────────────────────
 /.idea
 .project
 .classpath
@@ -28,29 +45,37 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
+# VSCode Settings
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# dotenv environment variable files
+# ───────────────────────────────────────────────
+# Environment Variables
+# ───────────────────────────────────────────────
 .env
+.env.local
 .env.development.local
 .env.test.local
 .env.production.local
-.env.local
 
-# temp directory
+# ───────────────────────────────────────────────
+# Temp Files
+# ───────────────────────────────────────────────
 .temp
 .tmp
 
-# Runtime data
+# ───────────────────────────────────────────────
+# Runtime Data
+# ───────────────────────────────────────────────
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
+# ───────────────────────────────────────────────
+# Diagnostic Reports
+# ───────────────────────────────────────────────
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
