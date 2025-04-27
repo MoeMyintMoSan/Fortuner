@@ -6,11 +6,13 @@ import { TokenModule } from 'src/token/token.module';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import { AppconfigService } from 'src/appconfig/appconfig.service';
 import * as path from 'path';
+import { Token } from 'src/schema/token.schema';
 
 @Module({
   providers: [EmailService],
   imports: [
     AppconfigModule,
+    TokenModule,
     MailerModule.forRootAsync({
       imports: [AppconfigModule, TokenModule],
       inject: [AppconfigService],
