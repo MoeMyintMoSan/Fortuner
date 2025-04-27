@@ -41,5 +41,9 @@ export class AuthController {
     return req.user;
   }
 
+  @Post('verify')
+  async verifyEmail(@Body() body: { email: string; token: string }) {
+    return this.authService.TokenVerification(body.email, body.token);
+  }
   
 }

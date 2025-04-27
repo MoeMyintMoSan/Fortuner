@@ -22,4 +22,14 @@ export class UserService {
     const newUser = new this.userModel(user);
     return newUser.save();
   }
+
+  async verifyUser(email: string){
+    return this.userModel
+      .findOneAndUpdate(
+        { email: email },
+        { isVerified: true },
+        { new: true },
+      )
+      .exec();
+  }
 }
