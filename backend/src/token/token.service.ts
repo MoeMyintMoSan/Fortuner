@@ -20,9 +20,13 @@ export class TokenService {
     async createdToeken(type: string, email: string): Promise<Number[]> {
         const randomizedToken = Array.from({ length: 4 }, () => Math.floor(Math.random() * 10));
         const token = new this.tokenModel({ 
-          token: randomizedToken , type: type, 
+          token: randomizedToken.toString() , type: type, 
           expiresAt: new Date(Date.now() + 60 * 60 * 1000), userEmail: email });
         await token.save();
         return randomizedToken;
+    }
+
+    async deleteToken(email: string): Promise<{ deletedCount?: number }> {
+        return this.tokenModel.deleteOne({ userEmail: email }).exec();
     }
 }
