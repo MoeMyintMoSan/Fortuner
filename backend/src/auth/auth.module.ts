@@ -7,6 +7,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { AppconfigModule } from 'src/appconfig/appconfig.module';
 import { AppconfigService } from 'src/appconfig/appconfig.service';
 import { EmailModule } from 'src/email/email.module';
+import { TokenModule } from 'src/token/token.module';
+import { Token } from 'src/schema/token.schema';
 
 @Module({
   imports: [
@@ -14,6 +16,7 @@ import { EmailModule } from 'src/email/email.module';
     UserModule,
     PassportModule,
     EmailModule,
+    TokenModule,
     JwtModule.registerAsync({
       imports: [AppconfigModule],
       useFactory: async (configService: AppconfigService) => ({
